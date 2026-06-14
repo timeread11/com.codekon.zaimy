@@ -20,6 +20,11 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
+    - name: Fix Icon Formats
+      run: |
+        sudo apt-get install -y imagemagick
+        find app/src/main/res -name "*.png" -exec mogrify -format png {} +
+
     - name: Generate Keystore
       run: |
         keytool -genkey -v -keystore release.keystore -alias key0 -keyalg RSA -keysize 2048 -validity 10000 -storepass password123 -keypass password123 -dname "CN=wbankir, OU=wbankir, O=wbankir, L=City, S=State, C=RU"
