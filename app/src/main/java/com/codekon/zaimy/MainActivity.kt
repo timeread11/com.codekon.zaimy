@@ -70,7 +70,9 @@ class MainActivity : AppCompatActivity() {
                 error: WebResourceError?
             ) {
                 super.onReceivedError(view, request, error)
-                showErrorScreen()
+                if (request?.isForMainFrame == true) {
+                    showErrorScreen()
+                }
             }
         }
     }
